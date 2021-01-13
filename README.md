@@ -1,6 +1,11 @@
 # Medium
 This project was generated with Angular CLI version 11.0.3.
 
+# install all the required packages
+after opening Angular project in visual studio code, run command 
+     npm install
+it will install all the required required modules
+
 # Development server
 Run ng serve for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
