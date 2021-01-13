@@ -1,8 +1,9 @@
 # Medium
 This project was generated with Angular CLI version 11.0.3.
 
-# install all the required packages
-after opening Angular project in visual studio code, run command 
+# Installing all the required packages
+First, you need to have Node and npm installed on your development machine.
+Now open your angular project in visual studio code, run command 
      npm install
 it will install all the required required modules
 
