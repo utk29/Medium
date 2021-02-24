@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RegistrationModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="blog">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="BlogId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BlogId" Type="int" Nullable="false" />
+          <Property Name="BlogTitle" Type="nvarchar(max)" />
+          <Property Name="BlogImage" Type="varchar(max)" />
+          <Property Name="BlogContent" Type="nvarchar(max)" />
+          <Property Name="Blogtype" Type="varchar" MaxLength="10" />
+          <Property Name="creation_time" Type="datetime2" Precision="7" />
+          <Property Name="likes" Type="int" />
+        </EntityType>
+        <EntityType Name="blog_likes">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="BlogId" />
+            <PropertyRef Name="LikerId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BlogId" Type="int" Nullable="false" />
+          <Property Name="LikerId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LikeDateTime" Type="datetime2" Precision="7" />
+        </EntityType>
+        <Function Name="blog_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="varchar" Mode="In" />
+          <Parameter Name="title" Type="nvarchar" Mode="In" />
+          <Parameter Name="img" Type="varchar(max)" Mode="In" />
+          <Parameter Name="content" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="type" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="blog_like_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="varchar" Mode="In" />
+          <Parameter Name="bid" Type="int" Mode="In" />
+          <Parameter Name="lid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="delete_blog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="varchar" Mode="In" />
+          <Parameter Name="bid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="get_blog_for_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="varchar" Mode="In" />
+          <Parameter Name="bid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="get_blogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="get_user_blogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="inc_likes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="varchar" Mode="In" />
+          <Parameter Name="bid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="update_blog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="varchar" Mode="In" />
+          <Parameter Name="bid" Type="int" Mode="In" />
+          <Parameter Name="btitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="bimage" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bcontent" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="btype" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="user_titles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="RegistrationModel1StoreContainer">
+          <EntitySet Name="blog" EntityType="Self.blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blog_likes" EntityType="Self.blog_likes" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RegistrationModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="blog">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="BlogId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BlogId" Type="Int32" Nullable="false" />
+          <Property Name="BlogTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlogImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BlogContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Blogtype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="creation_time" Type="DateTime" Precision="7" />
+          <Property Name="likes" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="RegistrationEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="blogs" EntityType="Self.blog" />
+          <FunctionImport Name="inc_likes">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="bid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="user_titles" ReturnType="Collection(RegistrationModel1.user_titles_Result)">
+          <Parameter Name="uid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="delete_blog">
+            <Parameter Name="uid" Mode="In" Type="String" />
+            <Parameter Name="bid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="get_blog_for_update" ReturnType="Collection(RegistrationModel1.get_blog_for_update_Result)">
+            <Parameter Name="uid" Mode="In" Type="String" />
+            <Parameter Name="bid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="update_blog">
+            <Parameter Name="uid" Mode="In" Type="String" />
+            <Parameter Name="bid" Mode="In" Type="Int32" />
+            <Parameter Name="btitle" Mode="In" Type="String" />
+            <Parameter Name="bimage" Mode="In" Type="String" />
+            <Parameter Name="bcontent" Mode="In" Type="String" />
+            <Parameter Name="btype" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="blog_likes" EntityType="RegistrationModel1.blog_likes" />
+          <AssociationSet Name="FK__blog_likes__531856C7" Association="RegistrationModel1.FK__blog_likes__531856C7">
+            <End Role="blog" EntitySet="blogs" />
+            <End Role="blog_likes" EntitySet="blog_likes" />
+          </AssociationSet>
+          <FunctionImport Name="blog_like_insert">
+            <Parameter Name="uid" Mode="In" Type="String" />
+            <Parameter Name="bid" Mode="In" Type="Int32" />
+            <Parameter Name="lid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="like_count">
+            <Parameter Name="uid" Mode="In" Type="String" />
+            <Parameter Name="bid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="blog_insert">
+            <Parameter Name="uid" Mode="In" Type="String" />
+            <Parameter Name="title" Mode="In" Type="String" />
+            <Parameter Name="img" Mode="In" Type="String" />
+            <Parameter Name="content" Mode="In" Type="String" />
+            <Parameter Name="type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="blog_count" ReturnType="Collection(Int32)">
+            <Parameter Name="uid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_blogs" ReturnType="Collection(RegistrationModel1.get_blogs_Result1)">
+          <Parameter Name="uid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_user_blogs" ReturnType="Collection(RegistrationModel1.get_user_blogs_Result)">
+          <Parameter Name="uid" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="user_titles_Result">
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="BlogId" Nullable="false" />
+          <Property Type="String" Name="BlogTitle" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BlogImage" Nullable="true" />
+          <Property Type="String" Name="BlogContent" Nullable="true" />
+          <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="creation_time" Nullable="true" />
+          <Property Type="Int32" Name="likes" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="get_blog_for_update_Result">
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="BlogId" Nullable="false" />
+          <Property Type="String" Name="BlogTitle" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BlogImage" Nullable="true" />
+          <Property Type="String" Name="BlogContent" Nullable="true" />
+          <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="creation_time" Nullable="true" />
+          <Property Type="Int32" Name="likes" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="blog_likes">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="BlogId" />
+            <PropertyRef Name="LikerId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BlogId" Type="Int32" Nullable="false" />
+          <Property Name="LikerId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LikeDateTime" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="blog" Relationship="RegistrationModel1.FK__blog_likes__531856C7" FromRole="blog_likes" ToRole="blog" />
+        </EntityType>
+        <Association Name="FK__blog_likes__531856C7">
+          <End Type="RegistrationModel1.blog" Role="blog" Multiplicity="1" />
+          <End Type="RegistrationModel1.blog_likes" Role="blog_likes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blog">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="BlogId" />
+            </Principal>
+            <Dependent Role="blog_likes">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="BlogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="get_blogs_Result">
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="BlogTitle" Nullable="true" />
+          <Property Type="String" Name="BlogImage" Nullable="true" />
+          <Property Type="String" Name="BlogContent" Nullable="true" />
+          <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="likes" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="get_blogs_Result1">
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="BlogId" Nullable="false" />
+          <Property Type="String" Name="BlogTitle" Nullable="true" />
+          <Property Type="String" Name="BlogImage" Nullable="true" />
+          <Property Type="String" Name="BlogContent" Nullable="true" />
+          <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="likes" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="get_user_blogs_Result">
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="BlogId" Nullable="false" />
+          <Property Type="String" Name="BlogTitle" Nullable="true" />
+          <Property Type="String" Name="BlogImage" Nullable="true" />
+          <Property Type="String" Name="BlogContent" Nullable="true" />
+          <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="creation_time" Nullable="true" />
+          <Property Type="Int32" Name="likes" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RegistrationModel1StoreContainer" CdmEntityContainer="RegistrationEntities2">
+          <EntitySetMapping Name="blogs">
+            <EntityTypeMapping TypeName="RegistrationModel1.blog">
+              <MappingFragment StoreEntitySet="blog">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+                <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+                <ScalarProperty Name="likes" ColumnName="likes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="inc_likes" FunctionName="RegistrationModel1.Store.inc_likes" />
+          <FunctionImportMapping FunctionImportName="user_titles" FunctionName="RegistrationModel1.Store.user_titles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RegistrationModel1.user_titles_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+                <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+                <ScalarProperty Name="likes" ColumnName="likes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="delete_blog" FunctionName="RegistrationModel1.Store.delete_blog" />
+          <FunctionImportMapping FunctionImportName="get_blog_for_update" FunctionName="RegistrationModel1.Store.get_blog_for_update">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RegistrationModel1.get_blog_for_update_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+                <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+                <ScalarProperty Name="likes" ColumnName="likes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="update_blog" FunctionName="RegistrationModel1.Store.update_blog" />
+          <EntitySetMapping Name="blog_likes">
+            <EntityTypeMapping TypeName="RegistrationModel1.blog_likes">
+              <MappingFragment StoreEntitySet="blog_likes">
+                <ScalarProperty Name="LikeDateTime" ColumnName="LikeDateTime" />
+                <ScalarProperty Name="LikerId" ColumnName="LikerId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="blog_like_insert" FunctionName="RegistrationModel1.Store.blog_like_insert" />
+          <FunctionImportMapping FunctionImportName="blog_insert" FunctionName="RegistrationModel1.Store.blog_insert" />
+          <FunctionImportMapping FunctionImportName="get_blogs" FunctionName="RegistrationModel1.Store.get_blogs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RegistrationModel1.get_blogs_Result1">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+                <ScalarProperty Name="likes" ColumnName="likes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_user_blogs" FunctionName="RegistrationModel1.Store.get_user_blogs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RegistrationModel1.get_user_blogs_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+                <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+                <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+                <ScalarProperty Name="likes" ColumnName="likes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

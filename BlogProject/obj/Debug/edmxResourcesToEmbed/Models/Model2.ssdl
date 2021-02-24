@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistrationModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="blog">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="BlogId" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="BlogId" Type="int" Nullable="false" />
+    <Property Name="BlogTitle" Type="nvarchar(max)" />
+    <Property Name="BlogImage" Type="varchar(max)" />
+    <Property Name="BlogContent" Type="nvarchar(max)" />
+    <Property Name="Blogtype" Type="varchar" MaxLength="10" />
+    <Property Name="creation_time" Type="datetime2" Precision="7" />
+    <Property Name="likes" Type="int" />
+  </EntityType>
+  <EntityType Name="blog_likes">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="BlogId" />
+      <PropertyRef Name="LikerId" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="BlogId" Type="int" Nullable="false" />
+    <Property Name="LikerId" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="LikeDateTime" Type="datetime2" Precision="7" />
+  </EntityType>
+  <Function Name="blog_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+    <Parameter Name="title" Type="nvarchar" Mode="In" />
+    <Parameter Name="img" Type="varchar(max)" Mode="In" />
+    <Parameter Name="content" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="type" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="blog_like_insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+    <Parameter Name="bid" Type="int" Mode="In" />
+    <Parameter Name="lid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="delete_blog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+    <Parameter Name="bid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_blog_for_update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+    <Parameter Name="bid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_blogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="get_user_blogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="inc_likes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="varchar" Mode="In" />
+    <Parameter Name="bid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="update_blog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+    <Parameter Name="bid" Type="int" Mode="In" />
+    <Parameter Name="btitle" Type="nvarchar" Mode="In" />
+    <Parameter Name="bimage" Type="varchar(max)" Mode="In" />
+    <Parameter Name="bcontent" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="btype" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="user_titles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="RegistrationModel1StoreContainer">
+    <EntitySet Name="blog" EntityType="Self.blog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="blog_likes" EntityType="Self.blog_likes" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

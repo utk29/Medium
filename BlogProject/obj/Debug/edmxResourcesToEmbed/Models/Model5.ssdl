@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistrationModel4.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="followers">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="FollowingId" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="FollowingId" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Function Name="delete_follower" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+    <Parameter Name="fid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="get_followers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uid" Type="varchar" Mode="In" />
+    <Parameter Name="fid" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="RegistrationModel4StoreContainer">
+    <EntitySet Name="followers" EntityType="Self.followers" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

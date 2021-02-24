@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RegistrationModel2StoreContainer" CdmEntityContainer="RegistrationEntities3">
+    <EntitySetMapping Name="blog_likes">
+      <EntityTypeMapping TypeName="RegistrationModel2.blog_likes">
+        <MappingFragment StoreEntitySet="blog_likes">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+          <ScalarProperty Name="LikerId" ColumnName="LikerId" />
+          <ScalarProperty Name="LikeDateTime" ColumnName="LikeDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="blog_like_insert" FunctionName="RegistrationModel2.Store.blog_like_insert" />
+    <FunctionImportMapping FunctionImportName="dislike" FunctionName="RegistrationModel2.Store.dislike" />
+  </EntityContainerMapping>
+</Mapping>

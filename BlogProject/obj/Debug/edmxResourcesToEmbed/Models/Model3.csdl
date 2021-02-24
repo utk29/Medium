@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistrationModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="blog_likes">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="BlogId" />
+      <PropertyRef Name="LikerId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BlogId" Type="Int32" Nullable="false" />
+    <Property Name="LikerId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LikeDateTime" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityContainer Name="RegistrationEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="blog_likes" EntityType="Self.blog_likes" />
+    <FunctionImport Name="blog_like_insert">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="bid" Mode="In" Type="Int32" />
+      <Parameter Name="lid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="like_count">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="bid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="dislike">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="bid" Mode="In" Type="Int32" />
+      <Parameter Name="lid" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

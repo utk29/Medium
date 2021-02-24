@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RegistrationModel4StoreContainer" CdmEntityContainer="RegistrationEntities6">
+    <EntitySetMapping Name="followers">
+      <EntityTypeMapping TypeName="RegistrationModel4.follower">
+        <MappingFragment StoreEntitySet="followers">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FollowingId" ColumnName="FollowingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="delete_follower" FunctionName="RegistrationModel4.Store.delete_follower" />
+    <FunctionImportMapping FunctionImportName="get_followers" FunctionName="RegistrationModel4.Store.get_followers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RegistrationModel4.get_followers_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FollowingId" ColumnName="FollowingId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

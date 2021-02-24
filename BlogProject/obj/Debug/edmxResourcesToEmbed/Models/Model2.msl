@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RegistrationModel1StoreContainer" CdmEntityContainer="RegistrationEntities2">
+    <EntitySetMapping Name="blogs">
+      <EntityTypeMapping TypeName="RegistrationModel1.blog">
+        <MappingFragment StoreEntitySet="blog">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+          <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+          <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+          <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+          <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+          <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+          <ScalarProperty Name="likes" ColumnName="likes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="inc_likes" FunctionName="RegistrationModel1.Store.inc_likes" />
+    <FunctionImportMapping FunctionImportName="user_titles" FunctionName="RegistrationModel1.Store.user_titles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RegistrationModel1.user_titles_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+          <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+          <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+          <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+          <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+          <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+          <ScalarProperty Name="likes" ColumnName="likes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="delete_blog" FunctionName="RegistrationModel1.Store.delete_blog" />
+    <FunctionImportMapping FunctionImportName="get_blog_for_update" FunctionName="RegistrationModel1.Store.get_blog_for_update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RegistrationModel1.get_blog_for_update_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+          <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+          <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+          <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+          <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+          <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+          <ScalarProperty Name="likes" ColumnName="likes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="update_blog" FunctionName="RegistrationModel1.Store.update_blog" />
+    <EntitySetMapping Name="blog_likes">
+      <EntityTypeMapping TypeName="RegistrationModel1.blog_likes">
+        <MappingFragment StoreEntitySet="blog_likes">
+          <ScalarProperty Name="LikeDateTime" ColumnName="LikeDateTime" />
+          <ScalarProperty Name="LikerId" ColumnName="LikerId" />
+          <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="blog_like_insert" FunctionName="RegistrationModel1.Store.blog_like_insert" />
+    <FunctionImportMapping FunctionImportName="blog_insert" FunctionName="RegistrationModel1.Store.blog_insert" />
+    <FunctionImportMapping FunctionImportName="get_blogs" FunctionName="RegistrationModel1.Store.get_blogs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RegistrationModel1.get_blogs_Result1">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+          <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+          <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+          <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+          <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+          <ScalarProperty Name="likes" ColumnName="likes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="get_user_blogs" FunctionName="RegistrationModel1.Store.get_user_blogs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RegistrationModel1.get_user_blogs_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+          <ScalarProperty Name="BlogTitle" ColumnName="BlogTitle" />
+          <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+          <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+          <ScalarProperty Name="Blogtype" ColumnName="Blogtype" />
+          <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+          <ScalarProperty Name="likes" ColumnName="likes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

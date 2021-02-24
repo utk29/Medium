@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="registration">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="middle_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="phone_number" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+    <Property Name="pass" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="photo_filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="bio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="DateTime" Precision="7" />
+    <Property Name="user_role" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="RegistrationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="registrations" EntityType="Self.registration" />
+    <FunctionImport Name="user_login" ReturnType="Collection(RegistrationModel.user_login_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="user_signup">
+      <Parameter Name="user_id" Mode="In" Type="String" />
+      <Parameter Name="first_name" Mode="In" Type="String" />
+      <Parameter Name="middle_name" Mode="In" Type="String" />
+      <Parameter Name="last_name" Mode="In" Type="String" />
+      <Parameter Name="phone_number" Mode="In" Type="String" />
+      <Parameter Name="email_id" Mode="In" Type="String" />
+      <Parameter Name="gender" Mode="In" Type="String" />
+      <Parameter Name="date_of_birth" Mode="In" Type="DateTime" />
+      <Parameter Name="pass" Mode="In" Type="String" />
+      <Parameter Name="photo_filename" Mode="In" Type="String" />
+      <Parameter Name="bio" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="update_profile">
+      <Parameter Name="uidold" Mode="In" Type="String" />
+      <Parameter Name="uidnew" Mode="In" Type="String" />
+      <Parameter Name="fname" Mode="In" Type="String" />
+      <Parameter Name="mname" Mode="In" Type="String" />
+      <Parameter Name="lname" Mode="In" Type="String" />
+      <Parameter Name="pnumber" Mode="In" Type="String" />
+      <Parameter Name="eid" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="photo" Mode="In" Type="String" />
+      <Parameter Name="bio" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="user_login_Result">
+    <Property Type="String" Name="user_id" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="first_name" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="phone_number" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="email_id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="gender" Nullable="true" MaxLength="6" />
+    <Property Type="DateTime" Name="date_of_birth" Nullable="true" />
+    <Property Type="String" Name="pass" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="photo_filename" Nullable="true" />
+    <Property Type="String" Name="bio" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="created_at" Nullable="true" />
+    <Property Type="String" Name="user_role" Nullable="true" MaxLength="5" />
+  </ComplexType>
+</Schema>

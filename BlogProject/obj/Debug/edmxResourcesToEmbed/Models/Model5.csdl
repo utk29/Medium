@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistrationModel4" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="follower">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="FollowingId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FollowingId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="RegistrationEntities6" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="followers" EntityType="Self.follower" />
+    <FunctionImport Name="delete_follower">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="fid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="get_followers" ReturnType="Collection(RegistrationModel4.get_followers_Result)">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="fid" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="get_followers_Result">
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="FollowingId" Nullable="false" MaxLength="10" />
+  </ComplexType>
+</Schema>

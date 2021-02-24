@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="registration">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="30" />
+    <Property Name="middle_name" Type="varchar" MaxLength="30" />
+    <Property Name="last_name" Type="varchar" MaxLength="30" />
+    <Property Name="phone_number" Type="char" MaxLength="10" />
+    <Property Name="email_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gender" Type="varchar" MaxLength="6" />
+    <Property Name="date_of_birth" Type="date" />
+    <Property Name="pass" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="photo_filename" Type="varchar(max)" />
+    <Property Name="bio" Type="varchar" MaxLength="100" />
+    <Property Name="created_at" Type="datetime2" Precision="7" />
+    <Property Name="user_role" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <Function Name="update_profile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="uidold" Type="varchar" Mode="In" />
+    <Parameter Name="uidnew" Type="varchar" Mode="In" />
+    <Parameter Name="fname" Type="varchar" Mode="In" />
+    <Parameter Name="mname" Type="varchar" Mode="In" />
+    <Parameter Name="lname" Type="varchar" Mode="In" />
+    <Parameter Name="pnumber" Type="char" Mode="In" />
+    <Parameter Name="eid" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="photo" Type="varchar(max)" Mode="In" />
+    <Parameter Name="bio" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="user_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="user_signup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_id" Type="varchar" Mode="In" />
+    <Parameter Name="first_name" Type="varchar" Mode="In" />
+    <Parameter Name="middle_name" Type="varchar" Mode="In" />
+    <Parameter Name="last_name" Type="varchar" Mode="In" />
+    <Parameter Name="phone_number" Type="char" Mode="In" />
+    <Parameter Name="email_id" Type="varchar" Mode="In" />
+    <Parameter Name="gender" Type="varchar" Mode="In" />
+    <Parameter Name="date_of_birth" Type="date" Mode="In" />
+    <Parameter Name="pass" Type="varchar" Mode="In" />
+    <Parameter Name="photo_filename" Type="varchar(max)" Mode="In" />
+    <Parameter Name="bio" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="RegistrationModelStoreContainer">
+    <EntitySet Name="registration" EntityType="Self.registration" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

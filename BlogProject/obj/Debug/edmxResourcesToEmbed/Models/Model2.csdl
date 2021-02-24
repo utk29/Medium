@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistrationModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="blog">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="BlogId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BlogId" Type="Int32" Nullable="false" />
+    <Property Name="BlogTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BlogImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BlogContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Blogtype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="creation_time" Type="DateTime" Precision="7" />
+    <Property Name="likes" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="RegistrationEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="blogs" EntityType="Self.blog" />
+    <FunctionImport Name="inc_likes">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="bid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="user_titles" ReturnType="Collection(RegistrationModel1.user_titles_Result)">
+      <Parameter Name="uid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="delete_blog">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="bid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="get_blog_for_update" ReturnType="Collection(RegistrationModel1.get_blog_for_update_Result)">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="bid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="update_blog">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="bid" Mode="In" Type="Int32" />
+      <Parameter Name="btitle" Mode="In" Type="String" />
+      <Parameter Name="bimage" Mode="In" Type="String" />
+      <Parameter Name="bcontent" Mode="In" Type="String" />
+      <Parameter Name="btype" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="blog_likes" EntityType="RegistrationModel1.blog_likes" />
+    <AssociationSet Name="FK__blog_likes__531856C7" Association="RegistrationModel1.FK__blog_likes__531856C7">
+      <End Role="blog" EntitySet="blogs" />
+      <End Role="blog_likes" EntitySet="blog_likes" />
+    </AssociationSet>
+    <FunctionImport Name="blog_like_insert">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="bid" Mode="In" Type="Int32" />
+      <Parameter Name="lid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="like_count">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="bid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="blog_insert">
+      <Parameter Name="uid" Mode="In" Type="String" />
+      <Parameter Name="title" Mode="In" Type="String" />
+      <Parameter Name="img" Mode="In" Type="String" />
+      <Parameter Name="content" Mode="In" Type="String" />
+      <Parameter Name="type" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="blog_count" ReturnType="Collection(Int32)">
+      <Parameter Name="uid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="get_blogs" ReturnType="Collection(RegistrationModel1.get_blogs_Result1)">
+      <Parameter Name="uid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="get_user_blogs" ReturnType="Collection(RegistrationModel1.get_user_blogs_Result)">
+      <Parameter Name="uid" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="user_titles_Result">
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="BlogId" Nullable="false" />
+    <Property Type="String" Name="BlogTitle" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BlogImage" Nullable="true" />
+    <Property Type="String" Name="BlogContent" Nullable="true" />
+    <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="creation_time" Nullable="true" />
+    <Property Type="Int32" Name="likes" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="get_blog_for_update_Result">
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="BlogId" Nullable="false" />
+    <Property Type="String" Name="BlogTitle" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BlogImage" Nullable="true" />
+    <Property Type="String" Name="BlogContent" Nullable="true" />
+    <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="creation_time" Nullable="true" />
+    <Property Type="Int32" Name="likes" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="blog_likes">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="BlogId" />
+      <PropertyRef Name="LikerId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="BlogId" Type="Int32" Nullable="false" />
+    <Property Name="LikerId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="LikeDateTime" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="blog" Relationship="RegistrationModel1.FK__blog_likes__531856C7" FromRole="blog_likes" ToRole="blog" />
+  </EntityType>
+  <Association Name="FK__blog_likes__531856C7">
+    <End Type="RegistrationModel1.blog" Role="blog" Multiplicity="1" />
+    <End Type="RegistrationModel1.blog_likes" Role="blog_likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="blog">
+        <PropertyRef Name="UserId" />
+        <PropertyRef Name="BlogId" />
+      </Principal>
+      <Dependent Role="blog_likes">
+        <PropertyRef Name="UserId" />
+        <PropertyRef Name="BlogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="get_blogs_Result">
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="BlogTitle" Nullable="true" />
+    <Property Type="String" Name="BlogImage" Nullable="true" />
+    <Property Type="String" Name="BlogContent" Nullable="true" />
+    <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="likes" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="get_blogs_Result1">
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="BlogId" Nullable="false" />
+    <Property Type="String" Name="BlogTitle" Nullable="true" />
+    <Property Type="String" Name="BlogImage" Nullable="true" />
+    <Property Type="String" Name="BlogContent" Nullable="true" />
+    <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="likes" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="get_user_blogs_Result">
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="BlogId" Nullable="false" />
+    <Property Type="String" Name="BlogTitle" Nullable="true" />
+    <Property Type="String" Name="BlogImage" Nullable="true" />
+    <Property Type="String" Name="BlogContent" Nullable="true" />
+    <Property Type="String" Name="Blogtype" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="creation_time" Nullable="true" />
+    <Property Type="Int32" Name="likes" Nullable="true" />
+  </ComplexType>
+</Schema>

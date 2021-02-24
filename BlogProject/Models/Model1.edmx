@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="30" />
+          <Property Name="middle_name" Type="varchar" MaxLength="30" />
+          <Property Name="last_name" Type="varchar" MaxLength="30" />
+          <Property Name="phone_number" Type="char" MaxLength="10" />
+          <Property Name="email_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="6" />
+          <Property Name="date_of_birth" Type="date" />
+          <Property Name="pass" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="photo_filename" Type="varchar(max)" />
+          <Property Name="bio" Type="varchar" MaxLength="100" />
+          <Property Name="created_at" Type="datetime2" Precision="7" />
+          <Property Name="user_role" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <Function Name="update_profile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uidold" Type="varchar" Mode="In" />
+          <Parameter Name="uidnew" Type="varchar" Mode="In" />
+          <Parameter Name="fname" Type="varchar" Mode="In" />
+          <Parameter Name="mname" Type="varchar" Mode="In" />
+          <Parameter Name="lname" Type="varchar" Mode="In" />
+          <Parameter Name="pnumber" Type="char" Mode="In" />
+          <Parameter Name="eid" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="photo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bio" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="user_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="user_signup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_id" Type="varchar" Mode="In" />
+          <Parameter Name="first_name" Type="varchar" Mode="In" />
+          <Parameter Name="middle_name" Type="varchar" Mode="In" />
+          <Parameter Name="last_name" Type="varchar" Mode="In" />
+          <Parameter Name="phone_number" Type="char" Mode="In" />
+          <Parameter Name="email_id" Type="varchar" Mode="In" />
+          <Parameter Name="gender" Type="varchar" Mode="In" />
+          <Parameter Name="date_of_birth" Type="date" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+          <Parameter Name="photo_filename" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bio" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="RegistrationModelStoreContainer">
+          <EntitySet Name="registration" EntityType="Self.registration" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="middle_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="phone_number" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+          <Property Name="pass" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="photo_filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="bio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="7" />
+          <Property Name="user_role" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="RegistrationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="registrations" EntityType="Self.registration" />
+          <FunctionImport Name="user_login" ReturnType="Collection(RegistrationModel.user_login_Result)">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="user_signup">
+            <Parameter Name="user_id" Mode="In" Type="String" />
+            <Parameter Name="first_name" Mode="In" Type="String" />
+            <Parameter Name="middle_name" Mode="In" Type="String" />
+            <Parameter Name="last_name" Mode="In" Type="String" />
+            <Parameter Name="phone_number" Mode="In" Type="String" />
+            <Parameter Name="email_id" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="String" />
+            <Parameter Name="date_of_birth" Mode="In" Type="DateTime" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+            <Parameter Name="photo_filename" Mode="In" Type="String" />
+            <Parameter Name="bio" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="update_profile">
+            <Parameter Name="uidold" Mode="In" Type="String" />
+            <Parameter Name="uidnew" Mode="In" Type="String" />
+            <Parameter Name="fname" Mode="In" Type="String" />
+            <Parameter Name="mname" Mode="In" Type="String" />
+            <Parameter Name="lname" Mode="In" Type="String" />
+            <Parameter Name="pnumber" Mode="In" Type="String" />
+            <Parameter Name="eid" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="photo" Mode="In" Type="String" />
+            <Parameter Name="bio" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="user_login_Result">
+          <Property Type="String" Name="user_id" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="phone_number" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="email_id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="gender" Nullable="true" MaxLength="6" />
+          <Property Type="DateTime" Name="date_of_birth" Nullable="true" />
+          <Property Type="String" Name="pass" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="photo_filename" Nullable="true" />
+          <Property Type="String" Name="bio" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="created_at" Nullable="true" />
+          <Property Type="String" Name="user_role" Nullable="true" MaxLength="5" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RegistrationModelStoreContainer" CdmEntityContainer="RegistrationEntities">
+          <EntitySetMapping Name="registrations">
+            <EntityTypeMapping TypeName="RegistrationModel.registration">
+              <MappingFragment StoreEntitySet="registration">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="photo_filename" ColumnName="photo_filename" />
+                <ScalarProperty Name="bio" ColumnName="bio" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="user_login" FunctionName="RegistrationModel.Store.user_login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RegistrationModel.user_login_Result">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="photo_filename" ColumnName="photo_filename" />
+                <ScalarProperty Name="bio" ColumnName="bio" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="user_signup" FunctionName="RegistrationModel.Store.user_signup" />
+          <FunctionImportMapping FunctionImportName="update_profile" FunctionName="RegistrationModel.Store.update_profile" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
